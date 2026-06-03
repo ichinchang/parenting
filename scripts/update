@@ -1,0 +1,73 @@
+#!/bin/bash
+# update — 主管抓最新教材（從 upstream cohort template 拉）
+#
+# v3 (2026-06-02 fix: unrelated-histories bug):
+#   學員 repo 是 fresh-init seed，跟 template 沒共同祖先 → `git merge` 會 fatal。
+#   改用「路徑式 checkout」：只覆蓋教材路徑，完全不碰學員個人檔。
+#   界線（2026-06-02 實測驗證）：
+#     ✅ 更新：classes/ docs/ scripts/ .claude/ README.md INSTALL.md LICENSE .gitignore CLAUDE.local.md.hint
+#     🔒 保護（永遠不碰）：session-logs/  my-skills/  CLAUDE.local.md  classes/*/notes-*.md
+#     ⚠️ 學員若改過教材檔 → 會被 template 覆蓋（教材以講師為準，符合預期）
+
+set -uo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$REPO_ROOT"
+
+# 教材路徑（會更新）。學員個人路徑（session-logs/ my-skills/ CLAUDE.local.md）刻意不在此清單。
+MATERIAL_PATHS="classes docs scripts .claude README.md INSTALL.md LICENSE .gitignore CLAUDE.local.md.hint"
+
+echo "🔄 抓最新教材（從 upstream cohort template）..."
+echo ""
+
+# Check upstream remote 存在
+if ! git remote | grep -q upstream; then
+  echo "❌ 沒設定 upstream remote（cohort template）"
+  echo "💡 跑 /setup-bootcamp 會自動設；或講師手動："
+  echo "      git remote add upstream https://github.com/\$(cat .upstream-template).git"
+  exit 1
+fi
+
+# [1/3] Fetch upstream
+echo "[1/3] Fetch upstream..."
+if ! git fetch upstream main 2>&1 | sed 's/^/  /'; then
+  echo "  ❌ Fetch 失敗（網路 / auth）"; exit 1
+fi
+echo "  ✅"
+
+# [2/3] 顯示 template 最近更新
+echo ""
+echo "[2/3] template 最近教材："
+git log upstream/main --oneline -5 2>/dev/null | sed 's/^/  /'
+
+# [3/3] 路徑式更新教材（不碰學員個人檔）
+echo ""
+echo "[3/3] 更新教材檔（你的 session-logs / my-skills / 個人檔不會被動）..."
+# 只 checkout upstream 有的教材路徑
+for p in $MATERIAL_PATHS; do
+  if git cat-file -e "upstream/main:$p" 2>/dev/null; then
+    git checkout upstream/main -- "$p" 2>/dev/null || true
+  fi
+done
+# 維持 seed strip 不變量（這兩個檔不進學員 repo）
+rm -f scripts/connect-git.sh client-config.yaml.example 2>/dev/null || true
+git rm --cached -q scripts/connect-git.sh client-config.yaml.example 2>/dev/null || true
+
+# 有沒有實際變更？
+if git diff --cached --quiet 2>/dev/null && [ -z "$(git status --porcelain $MATERIAL_PATHS 2>/dev/null)" ]; then
+  echo ""
+  echo "✅ 已是最新教材版本（沒新東西）"
+  exit 0
+fi
+
+git add -- $MATERIAL_PATHS 2>/dev/null || true
+git commit -m "update 教材 from cohort template ($(date +%Y-%m-%d))" 2>&1 | sed 's/^/  /' || true
+echo ""
+echo "✅ 教材更新完成（個人檔未動）"
+
+# 下一堂該做什麼
+echo ""
+echo "📚 課程內容："
+ls classes/ 2>/dev/null | sed 's/^/    - /'
+echo ""
+echo "💡 開始下堂課：./scripts/new-log \"Wx 主題\""

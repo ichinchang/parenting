@@ -1,0 +1,62 @@
+# client-config.yaml — 講師 fork template 給新客戶時填這
+#
+# 用法：
+#   1. ./scripts/customize-client.sh 會自動產生此檔
+#   2. 或手動複製 .example → client-config.yaml 並填入
+#   3. classes/_syllabus-template.html + classes/wN/README.md 內 {{變數}} 會被替換
+
+client:
+  # 公司全名（出現在大綱 header）
+  name: "範例公司股份有限公司"
+  # 短稱（commit message / session log 用）
+  short: "範例公司"
+  # 英文名（檔名 / slug 用）
+  slug: "example-corp"
+
+cohort:
+  # 學員人數（影響 W7 兩兩 swap 配對表 / W11 demo 分組）
+  size: 16
+  # 學員角色描述（W1 開場用）
+  role_description: "總經理 / 副總 / 各中心總監"
+  # 部門 (W3 Triage 場景卡用)
+  departments:
+    - HR
+    - 行銷
+    - 編輯
+    - 業務
+    - 客服
+
+schedule:
+  # 第一堂課日期（W1）
+  start_date: "2026-09-01"
+  # 一/三/五投票結果（影響各週確切日期）
+  day_of_week: "Wednesday"
+  # 連假衝突需檢查的日期
+  holiday_conflicts: []
+    # - "2026-09-29"  # 中秋連假，可能影響 Wx
+
+instructor:
+  # 講師
+  name: "Young Tsai"
+  email: "instructor@example.com"
+  org: "redutek"
+
+contacts:
+  # 客戶端窗口 — 真實人名只填在 local client-config.yaml（gitignored）；.example 一律 placeholder
+  hr_contact: "(HR 窗口)"
+  cto_contact: "(技術窗口)"
+
+it:
+  # 公司 GitHub org（W5 後主管 push SKILL 用，可選）
+  github_org: ""
+  # 學員 GitHub access 開好了嗎？
+  github_access_ready: false
+
+custom_focus:
+  # 客戶特殊關注（W3 驗收表 + W9 規範 v0 用）
+  industry: "媒體 / 出版 / 教育內容"
+  sensitivity: "客戶資料 / 訂閱戶識別資訊 / 法定 cookie"
+  # 不可給 AI 的特殊內容
+  ai_redzone:
+    - "未公開財報"
+    - "簽約客戶 NDA 內容"

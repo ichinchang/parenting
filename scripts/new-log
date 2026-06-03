@@ -1,0 +1,64 @@
+#!/bin/bash
+# new-log — 開新 session log（手寫筆記用，跟 Claude 對話 log 不同）
+#
+# Usage:
+#   ./scripts/new-log "W1 我的第一堂"
+#   ./scripts/new-log W3
+#
+# 注意：你跟 Claude 的對話會「自動」存到 session-logs/raw/，這 script 是給你
+# 自己想額外寫的學習筆記用（可選）。
+
+set -uo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$REPO_ROOT"
+
+TOPIC="${1:-學習筆記}"
+TODAY=$(date +%Y-%m-%d)
+SAFE_TOPIC=$(echo "$TOPIC" | tr ' /' '__' | tr -d '"' | head -c 40)
+LOG_FILE="session-logs/${TODAY}-NOTE-${SAFE_TOPIC}.md"
+
+if [ -f "$LOG_FILE" ]; then
+  echo "📝 今天的 log 已存在：$LOG_FILE"
+  echo "   要繼續寫，直接打開即可。"
+  exit 0
+fi
+
+cat > "$LOG_FILE" <<EOF
+# $TOPIC
+
+**日期**: $TODAY
+**主管**: (你的名字)
+
+---
+
+## 今天的目標
+
+- [ ]
+- [ ]
+
+## 學到什麼
+
+-
+
+## 我問 Claude 什麼
+
+（你的對話會自動 capture 到 session-logs/raw/，這裡只記你的反思）
+
+-
+
+## 下一步要做
+
+- [ ]
+
+---
+
+*Created via \`./scripts/new-log\`*
+EOF
+
+echo "✅ 建好了：$LOG_FILE"
+echo ""
+echo "💡 課前提醒："
+echo "   1. 你跟 Claude 對話會自動存（不用手動記）"
+echo "   2. 上完課 ./scripts/save \"$TOPIC 心得\" 一鍵存檔"
+echo "   3. 卡住問題 → 直接問 Claude / ping 講師"

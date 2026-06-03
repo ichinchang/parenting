@@ -1,0 +1,132 @@
+#!/bin/bash
+# save — 主管一鍵存檔（whitelist 模式 — 不會誤推敏感檔）
+#
+# v2 (2026-05-22 codex review fix Blocker 2):
+#   只 commit 主管學習產出的東西，不用 git add -A
+#
+# Whitelist:
+#   - session-logs/*.md       (對話摘要 md, 人讀友善)
+#   - my-skills/              (主管寫的 SOP)
+#   - classes/*/notes-*.md    (主管學習筆記, 若有)
+#   - CLAUDE.local.md *不* 在 whitelist (gitignored)
+#   - session-logs/raw/*.jsonl *不* 在 whitelist (gitignored, opt-in 才 push)
+#
+# Usage:
+#   ./scripts/save "今天上完 W1 的心得"
+
+set -uo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$REPO_ROOT"
+
+MSG="${1:-學習進度更新 $(date +%Y-%m-%d)}"
+
+echo "💾 開始存檔（whitelist 模式）..."
+echo ""
+
+if [ ! -d ".git" ]; then
+  echo "❌ 這資料夾還沒 init 成 git repo。請先跑 ./scripts/setup.sh"
+  exit 1
+fi
+
+# Whitelist 個別 add（不用 git add -A）
+ADDED=0
+for path in session-logs my-skills; do
+  if [ -d "$path" ]; then
+    # 找該目錄下被 track 或新增的檔案
+    if git add "$path" 2>&1 | sed 's/^/  /'; then
+      ADDED=$((ADDED + 1))
+    fi
+  fi
+done
+
+# 主管可能自己加學習筆記在 classes/*/ 下
+git add 'classes/*/notes-*.md' 2>/dev/null || true
+
+# Check 有沒有東西要 commit
+if git diff --cached --quiet; then
+  echo "  📭 沒有新變更（whitelist 範圍內）"
+  echo ""
+  echo "💡 提示："
+  echo "   ./save 只 commit 你的 session-logs/*.md + my-skills/ + 你寫的學習筆記"
+  echo "   CLAUDE.local.md / session-logs/raw/*.jsonl 不在範圍（個人或敏感）"
+  echo ""
+  echo "   要 opt-in push raw jsonl？跑 ./scripts/opt-in-raw-logs (還沒實作可手動 git add)"
+  exit 0
+fi
+
+# Show what's about to commit (transparency)
+echo ""
+echo "📋 即將 commit（這些會上傳，講師看得到）："
+git diff --cached --name-only | sed 's/^/    /'
+echo ""
+
+# Privacy safety-net: scan staged session-logs md for likely-private markers (warn, not block).
+# 主審查由 /save command (Claude) 做；這裡是確定性提醒，避免漏審。
+STAGED_MD=$(git diff --cached --name-only -- 'session-logs/*.md' 2>/dev/null || true)
+if [ -n "$STAGED_MD" ]; then
+  HITS=$(echo "$STAGED_MD" | xargs grep -lEi '薪資|績效|1-on-1|1on1|身分證|健康|病|憂鬱|離職|資遣|家人|小孩|老婆|先生|營收|成本|@[a-z0-9.]+\.(com|org|tw)' 2>/dev/null || true)
+  if [ -n "$HITS" ]; then
+    echo "⚠️  隱私提醒：以下對話摘要含可能私密 / 敏感字眼，上傳前請確認（或先 Edit 刪掉那段）："
+    echo "$HITS" | sed 's/^/      /'
+    echo "   （若已用 /save 審查過、確認 OK，忽略此提醒即可）"
+    echo ""
+  fi
+fi
+
+# Commit (capture exit code — pipe 會吃掉失敗，不能直接 | sed)
+COMMIT_OUT=$(git commit -m "$MSG" 2>&1)
+COMMIT_EXIT=$?
+echo "$COMMIT_OUT" | sed 's/^/  /'
+if [ "$COMMIT_EXIT" -ne 0 ]; then
+  echo ""
+  echo "❌ 存檔失敗 — commit 沒成功，你的東西還沒存進去（不要以為存好了）"
+  if echo "$COMMIT_OUT" | grep -qiE "identity|user\.email|user\.name|auto-detect|tell me who you are"; then
+    echo "   原因：git 還不知道你是誰（第一次用要設一次身份）"
+    echo "   複製這兩行貼到終端機跑（一次就好，之後都不用再設）："
+    echo "     git config --global user.name \"你的名字\""
+    echo "     git config --global user.email \"你的email\""
+    echo "   設完再跑一次：./scripts/save \"$MSG\""
+  else
+    echo "   把上面的訊息截圖 ping 講師"
+  fi
+  exit 1
+fi
+
+# Push (如果有 remote)
+if git remote | grep -q origin; then
+  echo ""
+  echo "  📤 上傳中..."
+  PUSH_OUT=$(git push 2>&1)
+  PUSH_EXIT=$?
+  if [ $PUSH_EXIT -eq 0 ]; then
+    echo "$PUSH_OUT" | sed 's/^/  /'
+    echo ""
+    echo "✅ 存檔完成！commit: $(git log -1 --oneline)"
+  else
+    # Friendly error categorization
+    if echo "$PUSH_OUT" | grep -qE "auth|403|401|credential"; then
+      echo ""
+      echo "⚠️  GitHub 認證失敗。試："
+      echo "      gh auth login    (用瀏覽器登入)"
+      echo "      或 ping 講師看 SSH key 是否設好"
+    elif echo "$PUSH_OUT" | grep -qE "rejected|non-fast-forward|fetch first"; then
+      echo ""
+      echo "⚠️  Remote 有新東西，先 ./scripts/update 拉下來再 ./save"
+    elif echo "$PUSH_OUT" | grep -qE "protected|branch protection"; then
+      echo ""
+      echo "⚠️  Branch 被保護不能直接 push。可能要走 PR — 講師確認設定。"
+    elif echo "$PUSH_OUT" | grep -qE "could not resolve host|network"; then
+      echo ""
+      echo "⚠️  網路問題 — 確認連得到 github.com 再 ./save"
+    else
+      echo "$PUSH_OUT" | sed 's/^/  /'
+      echo ""
+      echo "⚠️  Push 失敗（不確定原因）— 檔案已存 local 不會丟。下次 ./save 會再試。"
+    fi
+  fi
+else
+  echo ""
+  echo "✅ 已存 local（沒設定 remote 所以沒上傳）"
+  echo "   commit: $(git log -1 --oneline)"
+fi

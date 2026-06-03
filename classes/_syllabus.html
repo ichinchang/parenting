@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>親子天下主管班 — 6 堂課教材大綱 v4</title>
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --ink: #1F2937;
+    --muted: #6B7280;
+    --border: #E5E7EB;
+    --soft: #FFF8F0;
+    --w1: #C6613F;
+    --w3: #E4007F;
+    --w5: #7FB3AA;
+    --w7: #264653;
+    --w9: #B8860B;
+    --w11: #8B5CF6;
+    --anthropic: #D97706;
+    --baseline: #0EA5E9;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 940px; margin: 0 auto; padding: 48px 24px; }
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 24px; margin-bottom: 32px; }
+  header h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: -0.5px; }
+  header .meta { color: var(--muted); font-size: 14px; }
+  header .meta span { margin-right: 16px; }
+  header .meta b { color: var(--ink); }
+  .review-banner { background: #ECFDF5; border-left: 4px solid #10B981; padding: 16px 20px; margin: 16px 0 32px; border-radius: 4px; font-size: 14px; }
+  .review-banner b { color: #065F46; }
+  .review-banner ul { margin: 8px 0 0; padding-left: 20px; }
+  .toc { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px 24px; margin: 0 0 40px; font-size: 14px; }
+  .toc strong { display: block; margin-bottom: 8px; color: var(--w7); }
+  .toc a { color: var(--w1); text-decoration: none; margin-right: 16px; display: inline-block; padding: 4px 0; }
+  .toc a:hover { text-decoration: underline; }
+  .principles { background: var(--soft); border-left: 4px solid var(--w1); padding: 20px 24px; margin: 32px 0; border-radius: 4px; }
+  .principles h2 { margin: 0 0 12px; font-size: 18px; color: var(--w7); }
+  .principles ol { margin: 0; padding-left: 20px; }
+  .principles li { margin-bottom: 6px; }
+  .principles strong { color: var(--w3); }
+  .anthropic-path { background: #FEF3C7; border: 2px solid var(--anthropic); border-radius: 12px; padding: 24px 28px; margin: 40px 0; }
+  .anthropic-path h2 { margin: 0 0 12px; color: var(--anthropic); font-size: 22px; }
+  .anthropic-path .lead { font-size: 15px; margin: 0 0 16px; color: var(--ink); }
+  .anthropic-path table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; background: white; border-radius: 6px; overflow: hidden; }
+  .anthropic-path th { background: var(--anthropic); color: white; padding: 8px 12px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .anthropic-path td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .anthropic-path td:first-child { font-weight: 600; color: var(--anthropic); white-space: nowrap; width: 60px; }
+  .completion-criteria { background: white; padding: 14px 18px; border-radius: 6px; margin-top: 16px; border: 1px solid var(--anthropic); }
+  .completion-criteria b { color: var(--anthropic); }
+  .completion-criteria ul { margin: 4px 0 0; padding-left: 20px; }
+  .baseline-section { background: #F0F9FF; border: 2px solid var(--baseline); border-radius: 12px; padding: 24px 28px; margin: 32px 0; }
+  .baseline-section h2 { margin: 0 0 12px; color: var(--baseline); font-size: 20px; }
+  .baseline-section .lane { background: white; padding: 12px 16px; border-radius: 6px; margin: 8px 0; font-size: 14px; }
+  .baseline-section .lane b { color: var(--baseline); }
+  .w0-section { background: #F3E8FF; border: 2px solid var(--w11); border-radius: 12px; padding: 24px 28px; margin: 32px 0; }
+  .w0-section h2 { margin: 0 0 12px; color: var(--w11); font-size: 20px; }
+  .week-card { margin: 40px 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .week-header { padding: 22px 28px; color: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .week-w1 { background: var(--w1); }
+  .week-w3 { background: var(--w3); }
+  .week-w5 { background: var(--w5); }
+  .week-w7 { background: var(--w7); }
+  .week-w9 { background: var(--w9); }
+  .week-w11 { background: var(--w11); }
+  .week-header h2 { margin: 0; font-size: 22px; }
+  .week-header .badge { background: rgba(255,255,255,0.25); padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 500; }
+  .week-body { padding: 24px 28px; }
+  .section { margin-bottom: 22px; }
+  .section h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--w7); margin: 0 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
+  .anthropic-link { background: #FEF3C7; border-left: 3px solid var(--anthropic); padding: 10px 14px; border-radius: 4px; font-size: 14px; margin-bottom: 10px; }
+  .anthropic-link b { color: var(--anthropic); }
+  .anthropic-link a { color: var(--anthropic); text-decoration: none; font-weight: 600; }
+  .anthropic-link a:hover { text-decoration: underline; }
+  .lead { font-size: 15.5px; color: var(--ink); margin: 0 0 14px; font-weight: 500; }
+  .agenda-table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 14px; }
+  .agenda-table th { background: var(--w7); color: white; padding: 8px 12px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .agenda-table td { padding: 8px 12px; border-bottom: 1px solid rgba(0,0,0,0.05); vertical-align: top; }
+  .agenda-table td:first-child { font-weight: 600; color: var(--w1); white-space: nowrap; width: 95px; }
+  .agenda-table td:nth-child(2) { width: 140px; font-weight: 500; }
+  .agenda-table tr.baseline-row td { background: #F0F9FF; }
+  .agenda-table tr.baseline-row td:nth-child(2) { color: var(--baseline); }
+  .resource-card { background: white; border: 1px solid var(--border); padding: 10px 14px; margin-bottom: 8px; border-radius: 4px; font-size: 14px; }
+  .resource-card.youtube { border-left: 3px solid #DC2626; }
+  .resource-card.podcast { border-left: 3px solid #8B5CF6; }
+  .resource-card.essay { border-left: 3px solid var(--w7); }
+  .resource-card.material { border-left: 3px solid var(--w5); }
+  .resource-card.chinese { border-left: 3px solid #059669; background: #F0FDF4; }
+  .resource-card .type { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; font-weight: 600; }
+  .resource-card.youtube .type { background: #FEE2E2; color: #DC2626; }
+  .resource-card.podcast .type { background: #EDE9FE; color: #8B5CF6; }
+  .resource-card.essay .type { background: #E0F2F1; color: var(--w7); }
+  .resource-card.material .type { background: #D1FAE5; color: #065F46; }
+  .resource-card.chinese .type { background: #D1FAE5; color: #059669; }
+  .resource-card a { color: var(--w1); text-decoration: none; font-weight: 500; }
+  .resource-card a:hover { text-decoration: underline; }
+  .resource-card .meta { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+  .resource-card .gloss { background: var(--soft); padding: 6px 10px; border-radius: 3px; margin-top: 6px; font-size: 13px; color: var(--ink); }
+  .resource-card .gloss b { color: var(--w7); }
+  .checkbox-list { list-style: none; padding-left: 0; }
+  .checkbox-list li { padding-left: 28px; position: relative; margin-bottom: 6px; }
+  .checkbox-list li::before { content: "☐"; position: absolute; left: 0; top: 0; font-size: 18px; color: var(--w1); }
+  .module-list { padding-left: 20px; margin: 8px 0; }
+  .module-list li { margin-bottom: 8px; }
+  .module-list li b { color: var(--w7); }
+  .warning { background: #FEF3C7; border-left: 3px solid #F59E0B; padding: 10px 14px; margin: 12px 0; font-size: 14px; border-radius: 3px; }
+  .homework { background: #F0F9FF; border-left: 3px solid #0EA5E9; padding: 12px 16px; border-radius: 4px; font-size: 14px; margin-top: 12px; }
+  .homework b { color: #0369A1; }
+  .acceptance-table { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; font-size: 13px; margin: 8px 0; }
+  .acceptance-table b { color: var(--w7); }
+  .completion { background: #ECFDF5; border: 2px solid #10B981; border-radius: 12px; padding: 20px 24px; margin: 40px 0; }
+  .completion h2 { margin: 0 0 12px; color: #065F46; font-size: 20px; }
+  .completion ul { margin: 0; padding-left: 24px; }
+  .completion li { margin-bottom: 8px; }
+  footer { margin-top: 50px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>親子天下 主管班 — 6 堂課教材大綱</h1>
+  <div class="meta">
+    <span><b>Draft</b> v4 (Codex + 課程專家 review 整合版)</span>
+    <span><b>Date</b> 2026-05-22</span>
+    <span><b>For</b> 16 位主管</span>
+  </div>
+</header>
+
+<div class="review-banner">
+  <b>v4 改動摘要</b>（整合 Codex 7/10 + 課程專家 6.5/10 + QA review fix 3 P0）:
+  <ul>
+    <li>新增 <b>Anthropic 官方教材導讀路徑</b>（統一章節 + 結業門檻 7 項）</li>
+    <li>新增 <b>W0 self-assessment</b> + 老帶新 pair 配對機制</li>
+    <li>新增 <b>Baseline Lane</b>（每堂開頭 10 min，0 經驗者補課 / 重度用戶 stretch）</li>
+    <li>W5 簡化（SKILL.md 變「一頁 SOP」，GitHub 推 W7）</li>
+    <li>W3 加「AI 交付驗收表」 / W9 加「部門 AI 使用規範 v0」 / W11 demo 含風險+驗收</li>
+    <li>W7 改兩兩 swap，全班 demo 推 W9 / W11 改 parallel demo + gallery walk</li>
+    <li>每週只留 1 主影片 + 繁中導讀，英文影片改選讀</li>
+    <li>「派工姿態」改名「<b>主管派工 SOP</b>」（避免 prompt engineering 自相矛盾）</li>
+  </ul>
+</div>
+
+<div class="toc">
+  <strong>目錄</strong>
+  <a href="#anthropic-path">📘 Anthropic 官方教材導讀路徑</a>
+  <a href="#baseline">🎯 Baseline Lane 機制</a>
+  <a href="#w0">W0 · 預作業</a>
+  <a href="#w1">W1 · AI 共學初探</a>
+  <a href="#w3">W3 · Triage + 驗收</a>
+  <a href="#w5">W5 · SOP 沉澱</a>
+  <a href="#w7">W7 · 跨部門互學</a>
+  <a href="#w9">W9 · 共學收斂</a>
+  <a href="#w11">W11 · Demo 發表</a>
+  <a href="#completion">🏆 結業門檻</a>
+</div>
+
+<div class="principles">
+  <h2>🎯 教材設計原則</h2>
+  <ol>
+    <li><strong>主管派工 SOP</strong>（不是 prompt engineering 理論）— 教給 AI 派工的姿態，不教技巧公式</li>
+    <li><strong>共學 framing</strong> — 沒有 KPI/OKR/績效字眼</li>
+    <li><strong>Baseline Lane</strong> — 每堂前 10 min 處理 0 經驗 vs 重度用戶落差</li>
+    <li><strong>每堂 chain</strong> — 預習作業 feed 下一堂，W11 demo 從 W1 累積</li>
+    <li><strong>1 主影片 + 中文導讀</strong> — 英文影片改選讀，附中文導讀 + 親子天下工作問題</li>
+    <li><strong>主管 unique gap</strong> — 重「<b>驗收 / 授權 / guardrail</b>」不是個人生產力</li>
+    <li><strong>Anthropic 官方教材導讀</strong> — 6 堂完成 = 半個 Claude Code 受訓員工</li>
+  </ol>
+</div>
+
+<!-- ===================== Anthropic Path ===================== -->
+<div class="anthropic-path" id="anthropic-path">
+  <h2>📘 Anthropic 官方教材主管導讀路徑</h2>
+  <p class="lead">本課程不要求主管成為工程師，但 3 個月後，每位主管應完成「<b>半個 Claude Code 受訓員工</b>」最低能力：看懂 agentic workflow（AI 代理人工作流）/ 會用 CLAUDE.md 固定工作 context / 能把部門 SOP 沉澱成 Skill 草稿 / 能判斷哪些工作適合交給 AI agent。</p>
+
+  <table>
+    <thead><tr><th>週</th><th>必修 Anthropic 官方模組</th><th>主管產出</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>W1</td>
+        <td>Claude Code 101 — <b>What is Claude Code</b> / <b>How Claude Code works</b> / <b>CLAUDE.md file</b></td>
+        <td>個人 <code>CLAUDE.md v0</code></td>
+      </tr>
+      <tr>
+        <td>W3</td>
+        <td>Claude Code 101 — <b>Daily workflows</b> / <b>Explore → Plan → Code → Commit</b><br><span style="color:var(--muted);font-size:13px;">主管轉譯成：Explore → Plan → <b>Delegate → Review</b></span></td>
+        <td>部門 Triage 表 + AI 驗收欄位</td>
+      </tr>
+      <tr>
+        <td>W5</td>
+        <td>Anthropic Engineering Blog — <b>「Equipping agents for the real world with Agent Skills」</b> + 瀏覽 <code>anthropics/skills</code> repo template</td>
+        <td>一個部門 <code>SKILL.md v0</code>（一頁 SOP）</td>
+      </tr>
+      <tr>
+        <td>W7</td>
+        <td>瀏覽 <code>anthropics/skills</code> repo 中 <b>2 個非工程 skill</b>（如 pdf / docx / xlsx skill），拆解 name / description / instructions 結構</td>
+        <td>Take-1 試用紀錄 + 對原 Skill 的修改建議</td>
+      </tr>
+      <tr>
+        <td>W9</td>
+        <td>Claude Code in Action — 選讀 <b>context management</b> / <b>custom commands</b> / <b>MCP / GitHub integration</b><br><span style="color:var(--muted);font-size:13px;">主管只需理解用途與風險，不需實作</span></td>
+        <td>部門 AI 使用規範 v0</td>
+      </tr>
+      <tr>
+        <td>W11</td>
+        <td>整合演練：Demo 必須呈現 <b>Before / After / Skill or CLAUDE.md / 驗收方式 / 下一步</b></td>
+        <td>結業 demo + AI 共學摘要</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="completion-criteria">
+    <b>📚 資料來源（verified 官方連結）</b>
+    <ul>
+      <li><a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">Claude Code 101</a>（Anthropic Academy 免費課程）</li>
+      <li><a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank">Claude Code in Action</a>（進階課程）</li>
+      <li><a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills</a> GitHub repo</li>
+      <li><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank">Anthropic Engineering Blog — Agent Skills</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== Baseline Lane ===================== -->
+<div class="baseline-section" id="baseline">
+  <h2>🎯 Baseline Lane 機制（每堂前 10 min）</h2>
+  <p class="lead">16 位主管 AI 經驗 baseline 落差大（0 經驗 → ChatGPT 重度用戶）。Adult learning 第一原則 = respect prior experience。每堂前 10 min 分流：</p>
+
+  <div class="lane">
+    <b>🟢 Catch-up Lane</b>（0 經驗 / 上週沒做作業者）— Young 帶 10 min 補上週最小成果。下堂直接接得上。
+  </div>
+  <div class="lane">
+    <b>🔵 Standard Lane</b>（多數主管）— 確認 Triage / SKILL / Take-1 等預習作業 OK，直接進入主題講解。
+  </div>
+  <div class="lane">
+    <b>🟣 Stretch Lane</b>（ChatGPT 重度用戶 / 已 own own SKILL.md）— 拿到「進階挑戰卡」，課堂上做 next-level task（例：W1 已寫 CLAUDE.md → 試 multi-agent CLAUDE.md / W5 SKILL.md 已寫 → 試 Anthropic skills repo PR）。
+  </div>
+
+  <p style="margin-top: 16px; font-size: 14px;"><b>實作</b>：W0 self-assessment 結果決定每人初始 lane。主管<b>可換 lane</b> — 過程中發現自己 lane 不對，Young 私下調整。</p>
+</div>
+
+<!-- ===================== W0 ===================== -->
+<div class="w0-section" id="w0">
+  <h2>📝 W0 — 預作業週 (5/31 那週)</h2>
+  <p class="lead">開課前 1 週，每位主管完成 <b>5 題 self-assessment</b> + 老帶新 pair 配對。</p>
+
+  <div class="section">
+    <h3>5 題 Self-Assessment（Google Form，10 min）</h3>
+    <ol>
+      <li><b>你用過幾種 AI 工具？</b>（none / ChatGPT 試過幾次 / 每週用 / 每天用 / 付費過）</li>
+      <li><b>你寫過 prompt 嗎？</b>（不知道是什麼 / 試過 / 會調整 / 有自己常用 template / 寫過長 system prompt）</li>
+      <li><b>你用 AI 解過真實工作問題嗎？</b>（沒有 / 1 次 / 偶爾 / 每週 / 已是工作流一部分）</li>
+      <li><b>你部門有人在用 AI 嗎？</b>（不知道 / 沒有 / 1-2 個試試 / 多數人 / 已內建工作流）</li>
+      <li><b>你對共學最期待什麼？</b>（開放回答，1-3 句）</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h3>Pair 配對策略</h3>
+    <p>Young 根據 self-assessment 做<b>老帶新 pair</b>（不 random）：經驗高的配 0 經驗，第 1 個月固定 pair，W1 + W3 + W5 同一搭檔。第 2 個月才換配對。</p>
+  </div>
+
+  <div class="section">
+    <h3>W0 預讀（給 W1 帶來）</h3>
+    <div class="resource-card material">
+      <span class="type">Anthropic</span><a href="https://anthropic.skilljar.com/claude-code-101" target="_blank"><b>Claude Code 101</b></a> — <b>What is Claude Code</b> + <b>How Claude Code works</b> 兩個 module（總長 ~20 min）
+      <div class="meta">免費課程。主管不一定要看完，但 0 經驗者建議至少看這 2 個 module 對 baseline</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== W1 ===================== -->
+<div class="week-card" id="w1">
+  <div class="week-header week-w1">
+    <h2>W1 — AI 共學初探</h2>
+    <span class="badge">6/3 那週 · 130min 午餐</span>
+  </div>
+  <div class="week-body">
+
+    <div class="anthropic-link">
+      <b>📘 對應 Anthropic 教材</b>：Claude Code 101 — What is Claude Code / How Claude Code works / <a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">CLAUDE.md file module</a>
+    </div>
+
+    <p class="lead">破冰 + 建立「<b>主管派工 SOP</b>」姿態。建立共同語言 + 每人 3-5 個練習場景。</p>
+
+    <div class="section">
+      <h3>⏱️ 130 min Agenda（含 baseline lane 10 min）</h3>
+      <table class="agenda-table">
+        <thead><tr><th>時段</th><th>環節</th><th>內容</th></tr></thead>
+        <tbody>
+          <tr class="baseline-row"><td>0:00-0:10</td><td>🎯 Baseline Lane</td><td>Young 同步開課 — Catch-up（W0 沒做）/ Standard / Stretch 分流 quick check</td></tr>
+          <tr><td>0:10-0:25</td><td>開場 + 簡餐</td><td>Young 自我介紹 + 共學 framing 設定 + 圓桌一句話（每人 30 秒：工作 + 想 AI 幫的事）</td></tr>
+          <tr><td>0:25-0:50</td><td>主題講解</td><td>主管派工 SOP 三概念 + 簡立峰 5 min keynote 片段 + 親子天下實例 demo</td></tr>
+          <tr><td>0:50-1:30</td><td>動手實作</td><td>每人寫 CLAUDE.md 個人版（一頁紙）+ 跑第一個 Claude 對話 + Young 巡場</td></tr>
+          <tr><td>1:30-1:55</td><td>老帶新 pair 分享</td><td>W0 配對好的 pair 互看 CLAUDE.md + AI 對話 + 經驗高的給 1 個建議</td></tr>
+          <tr><td>1:55-2:10</td><td>收尾</td><td>3 個 takeaway + 派 W3 預習作業</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>✅ 主管帶走（最低門檻）</h3>
+      <ul class="checkbox-list">
+        <li>AI 練習場景清單（3-5 個自己手邊重複性工作）</li>
+        <li>跑通第一個 Claude 對話</li>
+        <li>CLAUDE.md 個人版 v0（一頁紙：角色 / 工作 / 痛點 / 風格 / 禁區）</li>
+        <li>Pair partner 1 位（W1-W5 同一搭檔）</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>📚 講解模組 (0:25-0:50, 25 min)</h3>
+      <ol class="module-list">
+        <li><b>主管派工 SOP — 餵 / 角 / 例 / 限</b>（10 min）— 餵 context / 給角色 / 給範例 / 給限制（不叫 prompt engineering，叫 SOP）</li>
+        <li><b>AI 能做什麼 / 不能做什麼</b>（5 min）— Anthropic CEO Dario 用 Claude 起草投資人信 + Drew Bent「不外包大腦」</li>
+        <li><b>簡立峰 keynote 片段</b>（5 min）— 「AI 移民時代」+ π 型人才（中文）</li>
+        <li><b>親子天下實例</b>（5 min）— Bruce / Michelle 進階班 demo 真實案例（請他們現場 30 秒分享）</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>🎓 教材（主管帶走的 handout）</h3>
+      <div class="resource-card material">
+        <span class="type">Template</span><b>CLAUDE.md 個人版模板</b>
+        <div class="meta">一頁紙 7 個 section（你是誰 / 工作 / 風格 / 痛點 / 期待 / 禁區 / 範例）</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">Cheatsheet</span><b>主管派工 SOP — 餵/角/例/限 1 頁 PDF</b>
+        <div class="meta">四步法 + 親子天下實例（HR / 編輯 / 行銷 各 1）</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">場景卡</span><b>16 個常見場景小抄</b>
+        <div class="meta">HR / 行銷 / 編輯 / 業務 / 客服 各 3-4 例，點菜式選</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🎬 主影片（1 個，配中文導讀）</h3>
+      <div class="resource-card chinese">
+        <span class="type">中文主影片</span><a href="https://www.youtube.com/watch?v=LZc6heAtXwo" target="_blank"><b>簡立峰「AI時代 未來人才」</b></a>（NYCU keynote · 2025-12 · 約 40 min）
+        <div class="meta">課堂播 5 min 片段（10:00-15:00「沒有原住民只有移民」段）</div>
+        <div class="gloss">
+          <b>中文導讀（給主管預習用）：</b><br>
+          (1) 簡立峰是前 Google 台灣總經理，這 keynote 12/2025 講 AI 時代台灣人才<br>
+          (2) 核心：AI 時代沒有原住民，從學生到 CEO 都是「第一代移民」<br>
+          (3) π 型人才 = 兩條腿（專業深度 + 跨域廣度）<br>
+          (4) 8 種軟實力 AI 無法取代：提問 / 表達 / 同理 / 批判思考 / 關心 / 協作 / 協商 / 領導<br>
+          (5) 親子天下工作問題：你的角色裡哪些動作 AI 取代不了？
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📖 選讀（不強制）</h3>
+      <div class="resource-card essay">
+        <span class="type">中文</span><a href="https://www.managertoday.com.tw/articles/view/71412" target="_blank">經理人 — 簡立峰：8 種軟實力</a>
+        <div class="meta">中文文章摘要，最快 understand「AI 不能取代什麼」</div>
+      </div>
+      <div class="resource-card essay">
+        <span class="type">英文</span><a href="https://www.darioamodei.com/essay/machines-of-loving-grace" target="_blank">Dario Amodei「Machines of Loving Grace」</a>（2024-10, 14,000 字）
+        <div class="meta">Anthropic CEO 對 AI 未來願景。選讀，太長可看摘要</div>
+      </div>
+      <div class="resource-card youtube">
+        <span class="type">中文選讀</span><a href="https://www.youtube.com/watch?v=-DjvtvI4k9o" target="_blank">唐鳳 柏林民主論壇 AI 經驗演講</a>
+        <div class="meta">政府主管視角，跟「制定遊戲規則」呼應</div>
+      </div>
+    </div>
+
+    <div class="homework">
+      <b>W1 → W3 預習作業</b>:<br>
+      • <b>必做</b>: 從場景清單挑 1 件事真的派 Claude 做，截圖 + 心得 2-3 句<br>
+      • <b>必做</b>: 完成 Claude Code 101 — <a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">Daily workflows + Explore→Plan→Code→Commit module</a><br>
+      • <b>選做</b>: CLAUDE.md v0.1（補充工作 context 細節）<br>
+      • <b>Stretch</b>: 試把 CLAUDE.md 改成<b>多角色版</b>（你跟 AI 不同情境用不同人格）
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== W3 ===================== -->
+<div class="week-card" id="w3">
+  <div class="week-header week-w3">
+    <h2>W3 — Triage + AI 交付驗收</h2>
+    <span class="badge">6/16 or 6/17 那週 · 130min 午餐</span>
+  </div>
+  <div class="week-body">
+
+    <div class="anthropic-link">
+      <b>📘 對應 Anthropic 教材</b>：Claude Code 101 — <a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">Daily workflows / Explore → Plan → Code → Commit</a> · <b>主管轉譯</b>：Explore → Plan → <b>Delegate → Review</b>
+    </div>
+
+    <div class="warning">⚠️ <b>端午衝突</b>：6/19 (五) 端午連假 — W3 建議 6/16 (一) 或 6/17 (二)。</div>
+
+    <p class="lead">從「給 AI 派工」進化到「<b>Triage + 驗收</b>」— 主管不只判斷哪些 task 派 AI，還要設計<b>怎麼驗收</b>。AI for executives 課程最常漏的就是<b>驗收 + 授權 + guardrail</b>。</p>
+
+    <div class="section">
+      <h3>⏱️ 130 min Agenda</h3>
+      <table class="agenda-table">
+        <thead><tr><th>時段</th><th>環節</th><th>內容</th></tr></thead>
+        <tbody>
+          <tr class="baseline-row"><td>0:00-0:10</td><td>🎯 Baseline Lane</td><td>Catch-up（W1 沒做 CLAUDE.md 補）/ Standard / Stretch 分流</td></tr>
+          <tr><td>0:10-0:25</td><td>領餐 + W1 回顧</td><td>3 主管分享 W1 作業（誰派了什麼）</td></tr>
+          <tr><td>0:25-0:55</td><td>主題講解</td><td>Triage 三欄 + Delegate → Review 流程 + AI 驗收表 4 維度</td></tr>
+          <tr><td>0:55-1:35</td><td>動手實作</td><td>畫 Triage 三欄 + AI 驗收表 v0（自己部門 5 個 task）</td></tr>
+          <tr><td>1:35-2:00</td><td>4 人小組分享</td><td>4 組跨部門，每組 1 個「應該派但不敢派」討論</td></tr>
+          <tr><td>2:00-2:10</td><td>收尾</td><td>派 W5 預習作業</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>✅ 主管帶走</h3>
+      <ul class="checkbox-list">
+        <li>Triage 三欄表（自己部門 specific）</li>
+        <li><b>AI 交付驗收表 v0</b>（4 維度：正確性 / 完整性 / 風險 / 你要不要 own 結果）</li>
+        <li>Explore → Plan → <b>Delegate → Review</b> 主管轉譯版理解</li>
+        <li>4 人小組 ≥ 1 個跨部門合作場景</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>📚 講解模組 (0:25-0:55, 30 min)</h3>
+      <ol class="module-list">
+        <li><b>Triage 三欄</b>（5 min）— 直接派 / 半自動 / AI 不該碰</li>
+        <li><b>Delegate → Review 流程</b>（10 min）— 對應 Anthropic Daily workflow 但主管版 — 給屬下任務怎麼驗收，給 AI 也一樣</li>
+        <li><b>AI 交付驗收表 4 維度</b>（10 min）— 正確性 / 完整性 / 風險暴露 / 我要不要 own 結果</li>
+        <li><b>HR / 行銷 / 編輯 / 業務 各 5 例</b>（5 min）— 真實親子天下場景</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>🎓 教材</h3>
+      <div class="resource-card material">
+        <span class="type">Template</span><b>Triage 三欄表模板</b>
+        <div class="meta">PDF + Google Sheets 版，含 3 個判斷維度</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">🆕 Template</span><b>AI 交付驗收表 v0</b>
+        <div class="meta">4 維度評分（1-5 分）：正確性 / 完整性 / 風險暴露 / Own 結果。每個 task 派 AI 前先填，避免「AI 做完 = 結案」陷阱</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">場景</span><b>20 個部門 task 示例卡</b>
+        <div class="meta">HR / 行銷 / 編輯 / 業務 各 5 例 — 直接練習分欄 + 填驗收表</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🎬 主影片（1 個，配中文導讀）</h3>
+      <div class="resource-card chinese">
+        <span class="type">中文主影片</span><a href="https://www.youtube.com/watch?v=XHTfeCk0GwQ" target="_blank"><b>簡立峰 哈佛商業評論 S2Ep56</b></a>
+        <div class="meta">「1% 超級人類掠奪 99% 未來」 — 主管視角看 AI 衝擊</div>
+        <div class="gloss">
+          <b>中文導讀：</b><br>
+          (1) 哈佛商評對談簡立峰，講 AI 對知識工作的衝擊<br>
+          (2) 「失落的一代」= 60-80 分階段的人最危險（AI 容易做到 80 分）<br>
+          (3) 1% 超級人類 vs 99% — 主管的工作是把團隊推往 1% 那邊<br>
+          (4) 親子天下工作問題：你部門哪些 task 屬於 60-80 分階段最容易被 AI 取代？該怎麼幫團隊升級？
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📖 選讀（不強制 — Karpathy 已下架，太抽象）</h3>
+      <div class="resource-card essay">
+        <span class="type">英文選讀</span><a href="https://www.youtube.com/watch?v=LCEmiRjPEtQ" target="_blank">Karpathy "Software Is Changing (Again)" YC talk</a>
+        <div class="meta">⚠️ 內容偏工程，主管 stretch lane 才推。一般主管跳過</div>
+      </div>
+      <div class="resource-card podcast">
+        <span class="type">英文選讀</span><a href="https://www.youtube.com/watch?v=P8xfB9IhJMg" target="_blank">Drew Bent on EdTech Insiders</a>
+        <div class="meta">Anthropic Education Lead 講 Learning Mode。stretch lane 推薦</div>
+      </div>
+    </div>
+
+    <div class="homework">
+      <b>W3 → W5 預習作業</b>:<br>
+      • <b>必做</b>: 找出自己團隊 <b>1 個 SOP</b> 想試著教 AI 接（任何形式：流程圖 / 文字 / 口述）<br>
+      • <b>必做</b>: 讀 <a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank">Anthropic Engineering Blog — Agent Skills</a>（10 min）<br>
+      • <b>選做</b>: Triage 表中 1 個「半自動」task 真的試派 + 用驗收表 score<br>
+      • <b>Stretch</b>: 把 AI 交付驗收表給屬下用 1 週，收回 feedback
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== W5 ===================== -->
+<div class="week-card" id="w5">
+  <div class="week-header week-w5">
+    <h2>W5 — SOP 沉澱（簡化版）</h2>
+    <span class="badge">7/1 那週 · 130min 午餐</span>
+  </div>
+  <div class="week-body">
+
+    <div class="anthropic-link">
+      <b>📘 對應 Anthropic 教材</b>：<a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank">Engineering Blog — Agent Skills</a> + 瀏覽 <a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills</a> repo template
+    </div>
+
+    <p class="lead">把自己的 know-how 變 <b>一頁 SOP 草稿</b>（不一定要叫 SKILL.md，先有結構就好）。<b>GitHub / marketplace / 安裝下載放 W7</b>，W5 只專注「沉澱」這件事。</p>
+
+    <div class="section">
+      <h3>⏱️ 130 min Agenda</h3>
+      <table class="agenda-table">
+        <thead><tr><th>時段</th><th>環節</th><th>內容</th></tr></thead>
+        <tbody>
+          <tr class="baseline-row"><td>0:00-0:10</td><td>🎯 Baseline Lane</td><td>Catch-up（W3 沒做 Triage 補）/ Standard / Stretch 分流</td></tr>
+          <tr><td>0:10-0:25</td><td>領餐 + W3 回顧</td><td>2 主管分享 Triage + 驗收表試用結果</td></tr>
+          <tr><td>0:25-0:50</td><td>主題講解</td><td>SOP 沉澱概念 + Young crm-skill demo + Agent Skills 概念（不講語法）</td></tr>
+          <tr><td>0:50-1:40</td><td>動手實作</td><td>每人寫一頁 SOP（從 W3 預習的 1 個 SOP 開始）+ Claude 對話 refine</td></tr>
+          <tr><td>1:40-2:00</td><td>Pair 互看</td><td>同 pair 互看 SOP + 給 1 個改進建議</td></tr>
+          <tr><td>2:00-2:10</td><td>收尾</td><td>SOP 草稿照片上傳 LINE 群 + 派 W7 預習作業</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>✅ 主管帶走</h3>
+      <ul class="checkbox-list">
+        <li><b>一頁 SOP 草稿</b>（純文字，描述自己工作流程，5 個 section）</li>
+        <li>Anthropic Agent Skills 概念理解（不需懂語法）</li>
+        <li>Pair partner 給的 1 個改進建議</li>
+      </ul>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 8px;">注意：W5 不要求主管會 GitHub / 會寫 frontmatter。那些推到 W7。</p>
+    </div>
+
+    <div class="section">
+      <h3>📚 講解模組 (0:25-0:50, 25 min)</h3>
+      <ol class="module-list">
+        <li><b>SOP 沉澱概念</b>（5 min）— 為何要把腦中 know-how 變一頁紙 / 跟交接文件差別</li>
+        <li><b>Young crm-skill demo</b>（10 min）— 真實 case study，看一頁 SOP 怎麼長 + 怎麼用</li>
+        <li><b>Anthropic Agent Skills 是什麼</b>（5 min）— 概念導讀，不講語法。等 W7 看 marketplace 才實作下載</li>
+        <li><b>SOP 寫法 5 個 section</b>（5 min）— Name / When to use / Steps / Inputs / Outputs</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>🎓 教材</h3>
+      <div class="resource-card material">
+        <span class="type">Template</span><b>一頁 SOP 草稿模板 v1</b>
+        <div class="meta">5 個 section（Name / When to use / Steps / Inputs / Outputs）+ 範例 — <b>純文字，不要求 frontmatter</b></div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">示範</span><b>3 個示範 SOP</b>
+        <div class="meta">HR 招募初篩 / 編輯校稿 / 業務 follow up — 主管直接抄結構</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">Demo</span><b>Young 自己的 crm-skill 完整版</b>
+        <div class="meta">當場跑給主管看「把人脈分析 SOP 變 AI 模板」</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🎬 主影片（1 個，配中文導讀）</h3>
+      <div class="resource-card podcast">
+        <span class="type">英文主影片 + 中文導讀</span><a href="https://www.latent.space/p/claude-code" target="_blank"><b>Latent Space: Boris Cherny on Claude Code</b></a>（2025-05-08）
+        <div class="meta">課堂播精華 10 min 段（30:00-40:00 講「為何 SKILL.md 是 leverage」）</div>
+        <div class="gloss">
+          <b>中文導讀：</b><br>
+          (1) Boris 是 Anthropic Claude Code lead engineer<br>
+          (2) Anthropic 內部 80% Claude Code 代碼是 Claude 自己寫的（dogfooding）<br>
+          (3) 重點不是個別 prompt，是<b>把每次 prompt 變成可重用資產</b>（SKILL）<br>
+          (4) 親子天下工作問題：你部門哪個 SOP 寫了一頁能讓屬下不用問你就能跑？
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📖 必讀（10 min）+ 選讀</h3>
+      <div class="resource-card essay">
+        <span class="type">🔑 必讀</span><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" target="_blank"><b>Anthropic Engineering Blog — Equipping agents with Agent Skills</b></a>
+        <div class="meta">官方介紹 SKILL.md 為何重要 + 怎麼寫（10 min）</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">選讀</span><a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank">Anthropic Claude Code in Action 課程</a>
+        <div class="meta">免費，含「如何寫 SKILL.md」實作 module — stretch lane 主管推薦</div>
+      </div>
+    </div>
+
+    <div class="homework">
+      <b>W5 → W7 預習作業</b>:<br>
+      • <b>必做</b>: 一頁 SOP 草稿 → v0.2（用 pair 建議 refine）<br>
+      • <b>必做</b>: 瀏覽 <a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills</a> repo，<b>挑 2 個非工程 skill</b>（如 pdf / docx / xlsx / artifacts-builder）看 SKILL.md 怎麼寫<br>
+      • <b>選做</b>: 在自己部門試用 SOP 1 次<br>
+      • <b>Stretch</b>: 試把 SOP 寫成正式 Anthropic SKILL.md 格式（含 frontmatter）
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== W7 ===================== -->
+<div class="week-card" id="w7">
+  <div class="week-header week-w7">
+    <h2>W7 — 跨部門互學（兩兩 swap）</h2>
+    <span class="badge">7/15 那週 · 130min 午餐</span>
+  </div>
+  <div class="week-body">
+
+    <div class="anthropic-link">
+      <b>📘 對應 Anthropic 教材</b>：瀏覽 <a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills</a> repo 中 <b>2 個非工程 skill</b>（W5 預習已選），現場拆解 name / description / instructions
+    </div>
+
+    <p class="lead"><b>兩兩 swap</b>（取代 v3 全班 Give-1）— <b>16 人 → 8 對 pair 同時互教互試</b>。比 16 人連續 demo 認知負荷低，學習深度高。全班 Give-1 推到 W9。</p>
+
+    <div class="section">
+      <h3>⏱️ 130 min Agenda</h3>
+      <table class="agenda-table">
+        <thead><tr><th>時段</th><th>環節</th><th>內容</th></tr></thead>
+        <tbody>
+          <tr class="baseline-row"><td>0:00-0:10</td><td>🎯 Baseline Lane</td><td>Catch-up（W5 沒寫 SOP 補）/ Standard / Stretch</td></tr>
+          <tr><td>0:10-0:25</td><td>領餐 + 暖場</td><td>W5 SOP 試用結果 1 句話分享一輪</td></tr>
+          <tr><td>0:25-0:45</td><td>主題講解</td><td>Anthropic skills repo 拆解 demo（Young 現場拆 1 個 pdf-skill）+ Naval Permissionless Leverage 概念</td></tr>
+          <tr><td>0:45-1:30</td><td>🆕 兩兩 swap (8 對)</td><td>16 人 → 8 對跨部門配對 (HR↔編輯 / 行銷↔業務)，每對 20 min × 2 輪。每輪換 partner — 第 1 輪互教 SOP，第 2 輪互試對方 SOP</td></tr>
+          <tr><td>1:30-1:55</td><td>4 人小組分享</td><td>4 組討論：哪個對方 SOP 最有啟發 / 跨部門合作種子</td></tr>
+          <tr><td>1:55-2:10</td><td>收尾</td><td>Take-1 紀錄上傳 + 派 W9 預習作業</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>✅ 主管帶走</h3>
+      <ul class="checkbox-list">
+        <li>跨部門 1 對 pair 的 SOP 試用 + 紀錄</li>
+        <li>拆 Anthropic 2 個非工程 skill 的結構分析（name / description / instructions）</li>
+        <li>對 marketplace 第一次親身互動體驗</li>
+        <li>4 人小組 ≥ 1 個跨部門合作種子</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>📚 講解模組 (0:25-0:45, 20 min)</h3>
+      <ol class="module-list">
+        <li><b>Anthropic skills repo 結構拆解</b>（10 min）— Young 現場拆 1 個非工程 skill（如 pdf 或 docx skill），看 SKILL.md frontmatter + instructions 怎麼寫</li>
+        <li><b>Naval Permissionless Leverage 概念</b>（5 min）— 中文版講解：「不需要別人許可的槓桿 = code + media」，SKILL.md = 你的 unsleeping employee</li>
+        <li><b>兩兩 swap 規則</b>（5 min）— 20 min × 2 輪，要做什麼</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>🎓 教材</h3>
+      <div class="resource-card material">
+        <span class="type">Template</span><b>SOP swap 互教結構卡（20 min）</b>
+        <div class="meta">5 min 我教 → 5 min 你問 → 5 min 你試 → 5 min 互回 feedback</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">Template</span><b>Anthropic skill 拆解單</b>
+        <div class="meta">Name / Description / Trigger 條件 / Instructions 結構 / 適用我部門嗎？</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">配對</span><b>跨部門 2 人 swap 配對表（8 對 × 2 輪）</b>
+        <div class="meta">16 人 → 8 對 pair。HR ↔ 編輯 / 行銷 ↔ 業務 — 主動介入避免同部門互換。第 1 輪後換 partner 變第 2 輪 8 對。</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🎬 主影片（1 個，配中文導讀）</h3>
+      <div class="resource-card chinese">
+        <span class="type">中文 + 英文 mix</span><b>Naval Almanack「Permissionless Leverage」</b>章節（自選讀，中文重述當場講）
+        <div class="meta">沒有單一中文版影片 — Young 課堂 5 min 用 Naval 框架自己講中文</div>
+        <div class="gloss">
+          <b>中文重述：</b><br>
+          (1) Naval Ravikant（矽谷投資人）提出 4 種 leverage：人力 / 資本 / 程式 / 媒體<br>
+          (2) <b>程式 + 媒體 = permissionless leverage</b> — 不需任何人許可<br>
+          (3) SKILL.md 是「<b>不需睡覺的員工</b>」— 寫一次，每天替你工作<br>
+          (4) 親子天下工作問題：你部門 SKILL.md 用得好，你能少招幾個人？多服務幾倍學員？
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📖 選讀</h3>
+      <div class="resource-card essay">
+        <span class="type">英文選讀</span><a href="https://www.navalmanack.com/almanack-of-naval-ravikant/find-a-position-of-leverage" target="_blank">Almanack chapter: Find a Position of Leverage</a>
+        <div class="meta">官方免費電子書章節，10 min 讀完</div>
+      </div>
+      <div class="resource-card essay">
+        <span class="type">英文選讀</span><a href="https://navalmanack.s3.amazonaws.com/Eric-Jorgenson_The-Almanack-of-Naval-Ravikant_Final.pdf" target="_blank">Almanack 完整 PDF</a>
+        <div class="meta">200 頁但金句很多，stretch lane 推薦</div>
+      </div>
+    </div>
+
+    <div class="homework">
+      <b>W7 → W9 預習作業</b>:<br>
+      • <b>必做</b>: 寫「12 週 AI 共學旅程」回顧 draft（半頁，前 8 週）<br>
+      • <b>必做</b>: 從 swap pair 拿到的 1 個 takeaway，整合進自己 SOP v0.3<br>
+      • <b>必做</b>: 準備 W9 全班 Give-1（3 min demo）— 包含 Before / After / SOP / 風險<br>
+      • <b>選做</b>: 看 <a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank">Claude Code in Action</a> custom commands module
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== W9 ===================== -->
+<div class="week-card" id="w9">
+  <div class="week-header week-w9">
+    <h2>W9 — 共學收斂 + 全班 Give-1</h2>
+    <span class="badge">7/29 那週 · 130min 午餐</span>
+  </div>
+  <div class="week-body">
+
+    <div class="anthropic-link">
+      <b>📘 對應 Anthropic 教材</b>：<a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank">Claude Code in Action</a> — 選讀 context management / custom commands / MCP / GitHub integration（主管只需理解用途+風險，不需實作）
+    </div>
+
+    <p class="lead">v3 的 W9 是「收斂」，v4 加上<b>全班 Give-1</b>（從 W7 推來，現在主管已 iterate 2 次 SOP，demo 不會空虛）+ <b>部門 AI 使用規範 v0</b>（解 AI for executives unique gap：授權 + guardrail）。</p>
+
+    <div class="section">
+      <h3>⏱️ 130 min Agenda</h3>
+      <table class="agenda-table">
+        <thead><tr><th>時段</th><th>環節</th><th>內容</th></tr></thead>
+        <tbody>
+          <tr class="baseline-row"><td>0:00-0:10</td><td>🎯 Baseline Lane</td><td>Catch-up（W7 swap 沒做 / Give-1 沒準備）/ Standard / Stretch</td></tr>
+          <tr><td>0:10-0:20</td><td>領餐 + W7 回顧</td><td>3 主管 1 句話 swap 啟發</td></tr>
+          <tr><td>0:20-1:08</td><td>🆕 全班 Give-1（16 人）</td><td>每人 3 min（2 min demo + 1 min Q&amp;A）= 48 min。跨部門順序穿插</td></tr>
+          <tr><td>1:08-1:30</td><td>🆕 主題講解 — 部門 AI 規範</td><td>部門 AI 使用規範 v0 框架（4 section 含<b>授權</b>）+ Munger 14 min 動畫精華片段</td></tr>
+          <tr><td>1:30-2:00</td><td>動手</td><td>每人寫部門 AI 使用規範 v0（一頁，4 section）+ 共學摘要 v1 outline</td></tr>
+          <tr><td>2:00-2:10</td><td>收尾</td><td>規範 v0 拍照上傳 + 派 W11 預習</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>✅ 主管帶走</h3>
+      <ul class="checkbox-list">
+        <li>全班 Give-1 完成（3 min demo）</li>
+        <li><b>部門 AI 使用規範 v0</b>（一頁，4 section）</li>
+        <li>AI 共學摘要 v1（1-2 頁）</li>
+        <li>留給親子天下的 1 個 SOP（IP 規範依公司合約）</li>
+        <li>W11 結業 demo slide outline</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>📚 講解模組 (1:30-1:50, 20 min)</h3>
+      <ol class="module-list">
+        <li><b>部門 AI 使用規範 v0 框架</b>（10 min）— 4 個 section：哪些可用 / 哪些不可用 / 驗收標準 / 出事 escalation。對應 Anthropic 「Equipping agents」blog 的 sandbox 概念</li>
+        <li><b>Munger Mental Models 14 min 動畫精華</b>（5 min）— 主管收斂層級該有的思考框架</li>
+        <li><b>三層留下什麼</b>（5 min）— 個人 (SOP) / 團隊 (規範) / 公司 (asset)</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h3>🎓 教材</h3>
+      <div class="resource-card material">
+        <span class="type">🆕 Template</span><b>部門 AI 使用規範 v0</b>
+        <div class="meta">4 個 section：(1) 哪些 task 可用 AI (2) 哪些絕不可用 (3) 驗收標準（連 W3 驗收表）(4) <b>授權 + Escalation</b> — 屬下用 AI 出包誰負責 / 屬下用 AI 的 task 主管要不要先看 / AI 寫的稿子掛誰名 / 客戶資料給 AI 邊界。對應 AI for executives unique gap：授權 + guardrail</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">Template</span><b>AI 共學摘要 v1 模板</b>
+        <div class="meta">5 個 section：改變了什麼 / 沒改變 / 留給接班 / Q4 想嘗試 / 給後來主管的建議</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">Template</span><b>W11 demo slide outline 模板（含風險 + 驗收欄）</b>
+        <div class="meta">5 頁 structure：Before / After / SOP/CLAUDE.md / <b>風險 + 驗收方式</b> / 下一步</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">Framework</span><b>「留下什麼」三層 1 頁圖</b>
+        <div class="meta">個人 (skill) / 團隊 (process) / 公司 (asset)</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🎬 主影片（1 個，配中文導讀）</h3>
+      <div class="resource-card chinese">
+        <span class="type">中文重述 + 英文短片</span><a href="https://www.jermainebrown.org/posts/charlie-mungers-psychology-of-misjudgment-in-14-min" target="_blank"><b>Charlie Munger Psychology of Misjudgment 14 min 動畫版</b></a>
+        <div class="meta">課堂播 5 min + Young 中文導讀</div>
+        <div class="gloss">
+          <b>中文導讀：</b><br>
+          (1) Munger 是 Buffett 副手，講「24 種人類誤判模式」<br>
+          (2) 對主管：你做收斂決策時哪些 bias 最容易踩？<br>
+          (3) AI 時代主管的 unique value = <b>識別 bias + 設 guardrail</b> 不是執行 task<br>
+          (4) 親子天下工作問題：你部門 AI 規範要防哪些 bias？（過度信任 AI / 太早採信 / 不驗收）
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📖 選讀</h3>
+      <div class="resource-card essay">
+        <span class="type">英文選讀</span><a href="https://www.youtube.com/watch?v=FlWL1Qz23co" target="_blank">Charlie Munger 1995 Harvard 完整版 1hr</a>
+        <div class="meta">傳奇演講，stretch lane 推薦看完</div>
+      </div>
+      <div class="resource-card podcast">
+        <span class="type">英文選讀</span><a href="https://www.dwarkesh.com/p/andrej-karpathy" target="_blank">Karpathy on Dwarkesh「Decade of Agents」</a>（2025-10, 2hr25）
+        <div class="meta">stretch lane — 對接 Q4 黑客松路徑用</div>
+      </div>
+    </div>
+
+    <div class="homework">
+      <b>W9 → W11 預習作業</b>:<br>
+      • <b>必做</b>: Demo slide 完成（5 頁 max）— Before / After / SOP / <b>風險 + 驗收</b> / 下一步<br>
+      • <b>必做</b>: AI 共學摘要 v1 → v2 修訂版<br>
+      • <b>必做</b>: 部門 AI 使用規範 v0 跟屬下分享 1 次，收 feedback<br>
+      • <b>選做</b>: 看 Jobs Stanford 2005 full speech (15 min)
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== W11 ===================== -->
+<div class="week-card" id="w11">
+  <div class="week-header week-w11">
+    <h2>W11 — Demo 發表（Parallel + Gallery Walk）</h2>
+    <span class="badge">8/12 那週 · 3-3.5 hr 下午場</span>
+  </div>
+  <div class="week-body">
+
+    <div class="anthropic-link">
+      <b>📘 對應 Anthropic 教材</b>：整合演練 — Demo 必須呈現 Before / After / Skill or CLAUDE.md / <b>驗收方式</b> / <b>風險</b> / 下一步
+    </div>
+
+    <p class="lead"><b>不再是 16 人連續 demo（認知過載）</b>。改 <b>parallel demo + gallery walk</b>：4 組 × 4 人小場 demo，每組推 1 人上台 + 12 人作品做 gallery walk。研究顯示 > 6 連續 demo 後 retention 掉 60%，parallel 解決這問題。</p>
+
+    <div class="section">
+      <h3>⏱️ 內容流程（v4 大改 — parallel demo）</h3>
+      <table class="agenda-table">
+        <thead><tr><th>時段</th><th>環節</th><th>內容</th></tr></thead>
+        <tbody>
+          <tr><td>0:00-0:15</td><td>開場 + 暖場</td><td>Young 開場 12 週 recap + Jobs "Connecting Dots" 5 min 播放</td></tr>
+          <tr><td>0:15-1:00</td><td>🆕 Parallel Demo (4 組 × 4 人, 45 min)</td><td>4 組同時開，每組 4 人 × 8 min demo + 5 min 組內推派 1 位上台</td></tr>
+          <tr><td>1:00-1:35</td><td>🆕 上台 demo (4 場 × 7 min)</td><td>各組推派 1 位給全班 demo（高品質 4 場，全班看得清）</td></tr>
+          <tr><td>1:35-2:05</td><td>🆕 Gallery Walk (30 min)</td><td>其他 12 位作品 stand poster 或 laptop demo，主管自由走場觀摩+寫便利貼 feedback</td></tr>
+          <tr><td>2:05-2:25</td><td>Bruce / Michelle 觀察</td><td>內部 AI 工作流 dogfooding 心得分享</td></tr>
+          <tr><td>2:25-2:55</td><td>嘉玲 / CEO 回饋</td><td>嘉玲 + CEO（如出席）回饋 + Young Q4 對接 pitch</td></tr>
+          <tr><td>2:55-3:20</td><td>結尾</td><td>Apple "Crazy Ones" 2 min 播放 + Young closing + 證書</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3>✅ 主管帶來 / 帶走</h3>
+      <ul class="checkbox-list">
+        <li>帶來: Demo Slide (5 頁: Before / After / SOP / <b>風險 + 驗收方式</b> / 下一步)</li>
+        <li>帶來: laptop (live demo 用)</li>
+        <li>帶走: 共學摘要 final version（W12 Young 整理交付）</li>
+        <li>帶走: 4 位 gallery walk 寫的 feedback 便利貼</li>
+        <li>帶走: 對接 Q4 黑客松 understanding</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>🎓 教材（Young 端 prep）</h3>
+      <div class="resource-card material">
+        <span class="type">Review</span><b>16 份 demo slide 預審（W11 前 1 週）</b>
+        <div class="meta">每人 deck 給 1-2 個改進建議。<b>必檢查：含風險 + 驗收方式 section</b></div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">Order</span><b>4 組 × 4 人配對表</b>
+        <div class="meta">跨部門均衡分組（每組含 HR + 編輯 + 行銷 + 業務 等不同領域）</div>
+      </div>
+      <div class="resource-card material">
+        <span class="type">Template</span><b>Gallery Walk feedback 便利貼</b>
+        <div class="meta">3 欄：我學到 / 我會抄 / 風險警示</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>🎬 演講（開場 / 結尾播放）</h3>
+      <div class="resource-card youtube">
+        <span class="type">YouTube · 開場</span><a href="https://www.youtube.com/watch?v=jiHZqamCD8c" target="_blank"><b>Steve Jobs Stanford 2005 (Enhanced HD 1080p)</b></a>
+        <div class="meta">15 min full speech。現場播「Connecting Dots」段 (3:30-7:00, 約 4 min)</div>
+        <div class="gloss">
+          <b>中文導讀（開場 Young 講）：</b><br>
+          Jobs 講「12 年後回頭看，當年看似無關的點會連起來」— 親子天下 16 主管 12 週後回頭看，這些 SOP / CLAUDE.md / 跨部門 swap 也是同樣道理。
+        </div>
+      </div>
+      <div class="resource-card youtube">
+        <span class="type">YouTube · 結尾</span><a href="https://www.youtube.com/watch?v=tjgtLSHhTPg" target="_blank"><b>Apple "Here's to the Crazy Ones" 1997 (原始版)</b></a>
+        <div class="meta">2 min。closing 氣氛收尾</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3>📖 主管預習素材</h3>
+      <div class="resource-card essay">
+        <span class="type">中文摘要</span><a href="https://stevejobsarchive.com/stories/stay-hungry-stay-foolish" target="_blank">Steve Jobs Archive: Stay Hungry, Stay Foolish</a>
+        <div class="meta">Jobs Archive 2025 remastered 版（20 週年）+ 文字稿（雙語）</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 20px; color: var(--muted); font-size: 13px;">
+      <b>W12-W13 後續</b>: Young 整理集體共學摘要 (markdown + PDF) → 私下發每位主管 + 公司。HR / CEO 線上對話彈性安排（3 個月觀察 + Q4 對接）。
+    </p>
+
+  </div>
+</div>
+
+<!-- ===================== Completion ===================== -->
+<div class="completion" id="completion">
+  <h2>🏆 結業門檻（7 項必達）</h2>
+  <p>完成這 7 項 = 半個 Claude Code 受訓員工，公司可信任你判斷哪些工作該交 AI、怎麼驗收、設怎樣 guardrail。</p>
+  <ul>
+    <li>✅ 完成 Anthropic <a href="https://anthropic.skilljar.com/claude-code-101" target="_blank">Claude Code 101</a> 指定 modules（W1 + W3 必修，W5 + W9 選修）</li>
+    <li>✅ 完成 <b>1 份個人 CLAUDE.md</b>（W1 開始，持續迭代到 W11）</li>
+    <li>✅ 完成 <b>1 份部門 Triage 表 + AI 交付驗收表</b>（W3 產出）</li>
+    <li>✅ 完成 <b>1 個 SOP / SKILL.md 草稿</b>（W5 一頁版 → W7 swap iterate → W9 final）</li>
+    <li>✅ 完成 <b>1 次跨部門 Take-1 試用</b>（W7 兩兩 swap）</li>
+    <li>✅ 🆕 完成 <b>1 份部門 AI 使用規範 v0</b>（W9 產出，含授權 + escalation）</li>
+    <li>✅ 完成 <b>1 場 Before/After demo 含風險 + 驗收</b>（W11 parallel 場或上台場）</li>
+  </ul>
+  <p style="margin-top: 12px; font-size: 14px; color: var(--muted);"><b>加分</b>：完成 <a href="https://anthropic.skilljar.com/claude-code-in-action" target="_blank">Claude Code in Action</a> 全部 modules</p>
+</div>
+
+<footer>
+  Draft v4 · 2026-05-22 · 親子天下主管班 P1 內部規劃文件<br>
+  整合 Codex review 7/10 + 課程專家 review 6.5/10 兩份 feedback<br>
+  Anthropic 官方教材導讀路徑 + Baseline Lane + W0 self-assessment + W7 兩兩 swap + W11 parallel demo
+</footer>
+
+</div>
+</body>
+</html>

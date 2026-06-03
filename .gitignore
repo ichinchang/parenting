@@ -1,0 +1,39 @@
+# ============================================================
+# .gitignore — Leader Bootcamp template + per-manager fork
+# ============================================================
+# 設計原則:
+# - 教材檔（classes/ docs/ scripts/ .claude/）git track，跟 upstream 同步
+# - 主管個人檔（CLAUDE.local.md, my-skills/）optional track（看主管自己）
+# - 對話 log raw jsonl 預設不 push（含敏感資訊）
+# - 摘要 md (人讀的) opt-in 可 push 給講師看
+# ============================================================
+
+# ---------- Personal context (NEVER push) ----------
+CLAUDE.local.md
+
+# ---------- 對話 raw log (預設不 push, 含完整 jsonl) ----------
+# 主管要 opt-in 才 push (改成 session-logs/raw/.gitkeep 反向 allow)
+session-logs/raw/*.jsonl
+
+# ---------- OS / Editor ----------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# ---------- Temp / logs ----------
+/tmp/
+*.log
+!session-logs/*.log
+
+# ---------- Build / cache ----------
+__pycache__/
+*.pyc
+
+# ---------- Hook state ----------
+.last-save-reminder
+
+# ---------- Setup state ----------
+.setup-done
+.release-version
